@@ -56,4 +56,15 @@ router.put('/:id', async (req, res)=>{
   }
 })
 
+//delete route
+router.delete('/:id', async (req, res, next)=> {
+  try {
+    const deletedReview = await ProductReview.findByIdAndDelete(req.params.id);
+    const deletedReviews = await ProductReview.deleteMany({ product: req.params.id });
+    res.redirect(200,'/product')
+
+  }catch (err) {
+    res.status(400).json({error: err})
+  }
+})
 module.exports = router
