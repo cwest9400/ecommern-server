@@ -7,6 +7,8 @@ const cors = require('cors')
 const morgan = require('morgan')
 
 const productController = require('./controllers/product-controller')
+const reviewController = require('./controllers/review-controller')
+
 
 // initialize .env variables
 require("dotenv").config();
@@ -20,6 +22,7 @@ app.use(cors())
 app.use(morgan('dev'))
 
 app.use('/product', productController)
+app.use('/review', reviewController)
 app.get('/', (req, res)=>res.redirect('/product'))
 
 app.listen(PORT, ()=> {

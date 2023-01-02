@@ -13,7 +13,6 @@ const ProductSchema = new mongoose.Schema({
         min: [0, 'you can not add a negative number'],
         required: [true, "price can not be empty"],
     },
-    // reviews: [ProductReview]
 }, { timestamps: true });
 
 const Product = mongoose.model("Product", ProductSchema);

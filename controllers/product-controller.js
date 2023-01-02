@@ -24,6 +24,19 @@ router.get('/', async (req,res)=> {
     }
 })
 
+// http://localhost:4000/people/:id - GET
+router.get('/:id', async (req,res)=> {
+    
+    try {
+
+        const foundProduct = await Product.findById(req.params.id)
+        res.status(200).json(foundProduct)
+
+    }catch (err) {
+        res.status(400).json({error: err})
+    }
+})
+
 //create product route
 router.post('/', async (req, res, next)=> {
     try {
@@ -39,7 +52,7 @@ router.post('/', async (req, res, next)=> {
 //update product route
 router.put('/:id', async (req, res, next)=>{
     try {
-        const updatedProduct = await db.Product.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body, {new: true})
         console.log(updatedProduct)
         return res.status(200).json(updatedProduct)
     } catch(error) {
@@ -48,5 +61,16 @@ router.put('/:id', async (req, res, next)=>{
     }
 })
 
+//delete product
+router.delete('/:id', async (req,res,next)=> {
+    try {
+        const deletedProduct = await Product.findByIdAndDelete(req.params.id)
+        console.log(deletedProduct)
+        res.redirect('/products')
+    } catch(error) {
+        console.error(error)
+        return next(error)
+    }
+})
 
 module.exports = router

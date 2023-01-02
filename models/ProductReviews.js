@@ -2,9 +2,7 @@ const mongoose = require("mongoose")
 const Product = require("./Product")
 
 const ProductReviewSchema = new mongoose.Schema({
-    // product: {
-    //     // type: mongoose.Types.ObjectId,
-    //     ref: "Product"},
+   
     rating: {
         type: Number,
         required: [true],
@@ -14,7 +12,12 @@ const ProductReviewSchema = new mongoose.Schema({
     comment: {
         type: String,
         required: true,
-        maxlength: 250
+        max: 250
+    },
+    //relationship to product
+    product: {
+        type: mongoose.Types.ObjectId,
+        ref: "Product",
     },
 }, {timestamps: true})
 
