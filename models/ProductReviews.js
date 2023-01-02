@@ -1,21 +1,21 @@
 const mongoose = require("mongoose")
-const Product = require("./Products")
+const Product = require("./Product")
 
 const ProductReviewSchema = new mongoose.Schema({
-    productId: { ref: Product._id },
+    // product: {
+    //     // type: mongoose.Types.ObjectId,
+    //     ref: "Product"},
     rating: {
         type: Number,
-        required: true,
+        required: [true],
         minlegnth: 1,
         maxlength: 5
     },
     comment: {
-        String,
+        type: String,
         required: true,
         maxlength: 250
     },
-
-    price: Number,
 }, {timestamps: true})
 
 const ProductReview = mongoose.model("Review", ProductReviewSchema)

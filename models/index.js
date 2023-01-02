@@ -1,6 +1,6 @@
 // const ProductReview = require('./ProductReviews');
 
 module.exports = {
-    Product: require('./Products'),
+    Product: require('./Product'),
     ProductReview: require('./ProductReviews')
 }
