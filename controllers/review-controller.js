@@ -45,4 +45,15 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+//update review
+router.put('/:id', async (req, res)=>{
+  try {
+      const updatedReview = await ProductReview.findByIdAndUpdate(req.params.id, req.body, {new:true})
+      console.log(updatedReview)
+      res.status(200).json(updatedReview)
+  } catch(err) {
+      res.status(400).json({error:err})
+  }
+})
+
 module.exports = router
